@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FundSubscribe } from './fund-subscribe';
+import { FundSubscribeComponent } from './fund-subscribe.component';
 
 describe('FundSubscribe', () => {
-  let component: FundSubscribe;
-  let fixture: ComponentFixture<FundSubscribe>;
+  let component: FundSubscribeComponent;
+  let fixture: ComponentFixture<FundSubscribeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FundSubscribe],
+      imports: [FundSubscribeComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FundSubscribe);
+    fixture = TestBed.createComponent(FundSubscribeComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

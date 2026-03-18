@@ -2,7 +2,7 @@
   "user": {
     "id": "u1",
     "name": "Usuario BTG",
-    "balance": 175000
+    "balance": 925000
   },
   "funds": [
     {
@@ -57,6 +57,46 @@
       "amount": 250000,
       "type": "SUBSCRIBE",
       "date": "2026-03-18T01:30:16.188Z"
+    },
+    {
+      "id": "149c211a-b425-4dd4-9a4e-db8c554b0668",
+      "fundId": "4",
+      "fundName": "FDO-ACCIONES",
+      "amount": 250000,
+      "type": "CANCEL",
+      "date": "2026-03-18T01:37:24.594Z"
+    },
+    {
+      "id": "58e8c425-faac-4b82-b25e-1f659dd80897",
+      "fundId": "4",
+      "fundName": "FDO-ACCIONES",
+      "amount": 250000,
+      "type": "CANCEL",
+      "date": "2026-03-18T01:37:27.397Z"
+    },
+    {
+      "id": "2a9df10c-e11f-4fca-9e07-1831fbda61c2",
+      "fundId": "4",
+      "fundName": "FDO-ACCIONES",
+      "amount": 250000,
+      "type": "CANCEL",
+      "date": "2026-03-18T01:37:31.248Z"
+    },
+    {
+      "id": "88dccc64-56dd-4256-bcd2-0b77e949a0dd",
+      "fundId": "4",
+      "fundName": "FDO-ACCIONES",
+      "amount": 250000,
+      "type": "SUBSCRIBE",
+      "date": "2026-03-18T01:46:24.862Z"
+    },
+    {
+      "id": "9585fa29-623e-46c3-8c6d-08f2be70d059",
+      "fundId": "4",
+      "fundName": "FDO-ACCIONES",
+      "amount": 250000,
+      "type": "CANCEL",
+      "date": "2026-03-18T01:46:27.780Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

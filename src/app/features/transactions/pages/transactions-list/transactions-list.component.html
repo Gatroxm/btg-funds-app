@@ -1,0 +1,103 @@
+<div class="space-y-8">
+
+  <!-- Fondo Activo / Mis Suscripciones -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="p-6 border-b border-gray-100 bg-emerald-50/50">
+      <h2 class="text-xl font-bold text-emerald-800 tracking-tight">Mis Suscripciones Activas</h2>
+      <p class="text-sm text-emerald-600 mt-1">Aquí puedes ver tus fondos actuales y cancelar tu participación.</p>
+    </div>
+    @if(activeSubscriptions.length === 0 && !isLoading){
+    <div class="p-6">
+      <div class="text-center py-8 bg-white rounded-lg border-2 border-dashed border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">No tienes fondos activos</h3>
+        <p class="text-gray-500 text-sm mt-1">Ve a la sección de fondos disponibles para empezar a invertir.</p>
+      </div>
+    </div>
+    }
+    @else{
+    <div class="overflow-x-auto" *ngIf="activeSubscriptions.length > 0">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-y border-gray-100 text-sm">
+            <th class="py-4 px-6 font-semibold text-gray-600">Fecha de Suscripción</th>
+            <th class="py-4 px-6 font-semibold text-gray-600">Fondo</th>
+            <th class="py-4 px-6 font-semibold text-gray-600 text-right">Monto Invertido</th>
+            <th class="py-4 px-6 font-semibold text-gray-600 text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr *ngFor="let t of activeSubscriptions" class="hover:bg-gray-50 transition-colors">
+            <td class="py-4 px-6 text-sm text-gray-600">{{ t.date | date:'medium' }}</td>
+            <td class="py-4 px-6 font-medium text-gray-800">{{ t.fundName }}</td>
+            <td class="py-4 px-6 text-right font-bold text-gray-900">
+              {{ t.amount | currency:'COP':'symbol-narrow':'1.0-0' }}
+            </td>
+            <td class="py-4 px-6 text-center">
+              <button (click)="cancelSubscription(t)" [disabled]="isProcessing"
+                class="text-xs font-bold text-rose-600 hover:text-white bg-rose-50 hover:bg-rose-600 px-4 py-2 rounded-lg transition-colors border border-rose-100 hover:border-transparent disabled:opacity-50 inline-block">
+                Cancelar Participación
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    }
+  </div>
+
+  <!-- Historial Completo -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="p-6 border-b border-gray-100">
+      <h2 class="text-2xl font-bold text-gray-800 tracking-tight">Historial de Transacciones</h2>
+      <p class="text-sm text-gray-500 mt-1">Registro contable de todas tus operaciones (suscripciones y cancelaciones).
+      </p>
+    </div>
+    @if(transactions.length === 0 && !isLoading){
+    <div class="p-6">
+      <div class="text-center py-8">
+        <p class="text-gray-500 text-sm">El historial está vacío.</p>
+      </div>
+    </div>
+    }
+    @else{
+    <div class="overflow-x-auto" *ngIf="transactions.length > 0">
+      <table class="w-full text-left border-collapse opacity-90 text-sm">
+        <thead>
+          <tr class="bg-gray-50 border-y border-gray-100">
+            <th class="py-3 px-6 font-semibold text-gray-500">Fecha</th>
+            <th class="py-3 px-6 font-semibold text-gray-500">Movimiento</th>
+            <th class="py-3 px-6 font-semibold text-gray-500">Fondo</th>
+            <th class="py-3 px-6 font-semibold text-gray-500 text-right">Monto</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr *ngFor="let t of transactions" class="hover:bg-gray-50 transition-colors">
+            <td class="py-3 px-6 text-gray-500">{{ t.date | date:'medium' }}</td>
+            <td class="py-3 px-6">
+              <span
+                class="px-2 py-0.5 rounded text-[10px] font-bold tracking-wide flex items-center w-fit gap-1 uppercase"
+                [ngClass]="t.type === 'SUBSCRIBE' ? 'bg-indigo-50 text-indigo-600' : 'bg-rose-50 text-rose-600'">
+                <svg *ngIf="t.type==='SUBSCRIBE'" class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <svg *ngIf="t.type==='CANCEL'" class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                {{ t.type === 'SUBSCRIBE' ? 'Suscripción' : 'Cancelación' }}
+              </span>
+            </td>
+            <td class="py-3 px-6 font-medium text-gray-700">{{ t.fundName }}</td>
+            <td class="py-3 px-6 text-right font-bold"
+              [ngClass]="t.type === 'SUBSCRIBE' ? 'text-gray-900' : 'text-emerald-600'">
+              {{ t.type === 'CANCEL' ? '+' : '-' }}{{ t.amount | currency:'COP':'symbol-narrow':'1.0-0' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    }
+  </div>
+</div>
