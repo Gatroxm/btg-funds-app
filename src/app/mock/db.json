@@ -2,7 +2,7 @@
   "user": {
     "id": "u1",
     "name": "Usuario BTG",
-    "balance": 925000
+    "balance": 675000
   },
   "funds": [
     {
@@ -97,6 +97,30 @@
       "amount": 250000,
       "type": "CANCEL",
       "date": "2026-03-18T01:46:27.780Z"
+    },
+    {
+      "id": "aa120efc-b6da-45d7-9300-ffb3aaadf903",
+      "fundId": "4",
+      "fundName": "FDO-ACCIONES",
+      "amount": 250000,
+      "type": "SUBSCRIBE",
+      "date": "2026-03-18T02:41:00.794Z"
+    },
+    {
+      "id": "4ca61075-9446-4279-8c0b-7ba21cd243c9",
+      "fundId": "1",
+      "fundName": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "amount": 75000,
+      "type": "CANCEL",
+      "date": "2026-03-18T02:41:23.605Z"
+    },
+    {
+      "id": "e9bb019f-3719-4b92-8f16-8e3da36b7f94",
+      "fundId": "1",
+      "fundName": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "amount": 75000,
+      "type": "SUBSCRIBE",
+      "date": "2026-03-18T02:48:19.336Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
