@@ -17,10 +17,10 @@ El proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cl
 ## ⚙️ Funcionalidades Principales
 
 1. **Listado de Fondos (Disponibles):** Muestra una tabla con los fondos disponibles (nombre, categoría FIC/FPV, monto mínimo y rentabilidad esperada).
-2. **Suscripción de Fondos:** Permite ingresar un monto a invertir. Valida que el monto no sea menor al mínimo requerido por el fondo y que el usuario tenga saldo suficiente.
+2. **Suscripción de Fondos:** Permite ingresar un monto a invertir. Valida que el monto no sea menor al mínimo requerido por el fondo y que el usuario tenga saldo suficiente. Incluye selección de **método de notificación** (Email o SMS).
 3. **Historial de Transacciones:** Registra todas las suscripciones exitosas y permite ver el flujo detallado de caja.
 4. **Cancelación de Suscripciones:** En el historial de transacciones, el usuario puede cancelar suscripciones previas, devolviendo automáticamente el monto exacto a su saldo disponible.
-5. **Notificaciones (Toasts):** Alertas visuales (`ngx-toastr`) para casos de éxito (suscripciones confirmadas) y errores (saltos insuficientes).
+5. **Notificaciones (Toasts):** Alertas visuales (`ngx-toastr`) para casos de éxito (suscripciones confirmadas indicando el canal elegido) y errores (saltos insuficientes).
 
 ---
 

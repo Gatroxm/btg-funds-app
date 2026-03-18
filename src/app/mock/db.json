@@ -2,7 +2,7 @@
   "user": {
     "id": "u1",
     "name": "Usuario BTG",
-    "balance": 425000
+    "balance": 175000
   },
   "funds": [
     {
@@ -49,6 +49,14 @@
       "amount": 75000,
       "type": "SUBSCRIBE",
       "date": "2026-03-18T01:24:49.227Z"
+    },
+    {
+      "id": "f4cceae4-1f7a-48a5-9745-7af925cf9c10",
+      "fundId": "4",
+      "fundName": "FDO-ACCIONES",
+      "amount": 250000,
+      "type": "SUBSCRIBE",
+      "date": "2026-03-18T01:30:16.188Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

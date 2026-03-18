@@ -68,6 +68,22 @@ import { switchMap, take, Subscription } from 'rxjs';
               <span *ngIf="subscribeForm.get('amount')?.errors?.['insufficientFunds']">No tienes saldo suficiente para esta operación.</span>
             </div>
           </div>
+          
+          <div class="space-y-3 pt-2 border-t border-gray-100">
+             <label class="block text-sm font-semibold text-gray-700">Canal de Notificación</label>
+             <div class="flex gap-4">
+               <label class="flex items-center gap-2 cursor-pointer">
+                 <input type="radio" formControlName="notificationPreference" value="EMAIL" 
+                        class="w-4 h-4 text-[#002f5d] border-gray-300 focus:ring-[#002f5d]">
+                 <span class="text-sm font-medium text-gray-700">Correo Electrónico</span>
+               </label>
+               <label class="flex items-center gap-2 cursor-pointer">
+                 <input type="radio" formControlName="notificationPreference" value="SMS" 
+                        class="w-4 h-4 text-[#002f5d] border-gray-300 focus:ring-[#002f5d]">
+                 <span class="text-sm font-medium text-gray-700">SMS (Mensaje de texto)</span>
+               </label>
+             </div>
+          </div>
 
           <div class="pt-4">
             <button type="submit" [disabled]="subscribeForm.invalid || isSubmitting"
@@ -137,6 +153,10 @@ export class FundSubscribeComponent implements OnInit, OnDestroy {
       amount: [
         this.fund?.minAmount || 0, 
         [Validators.required, Validators.min(this.fund?.minAmount || 0)]
+      ],
+      notificationPreference: [
+        'EMAIL',
+        [Validators.required]
       ]
     }, { validators: this.balanceValidator.bind(this) });
   }
@@ -155,6 +175,7 @@ export class FundSubscribeComponent implements OnInit, OnDestroy {
     
     this.isSubmitting = true;
     const amount = this.subscribeForm.value.amount;
+    const notificationPreference = this.subscribeForm.value.notificationPreference;
 
     // Deduct balance
     this.userService.updateBalance(-amount).pipe(
@@ -170,7 +191,8 @@ export class FundSubscribeComponent implements OnInit, OnDestroy {
       })
     ).subscribe({
       next: () => {
-        this.toastr.success(`Suscripción exitosa a ${this.fund!.name}`);
+        const notifMsg = notificationPreference === 'EMAIL' ? 'correo electrónico' : 'SMS';
+        this.toastr.success(`Suscripción exitosa a ${this.fund!.name}. Te notificaremos por ${notifMsg}.`);
         this.router.navigate(['/transactions']);
       },
       error: () => {
